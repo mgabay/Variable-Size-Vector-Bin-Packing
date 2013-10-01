@@ -1,0 +1,43 @@
+Graphs layouts
+
+Diagrammes:
+
+mf 0.9 - rem 0.8
+mf 0.9 - rem 0.8
+
+calc ~ 470s
+
+Plage totaux:
+$'Similar'.$A$1:$A$10,$'Similar'.$H$1:$H$10,$'Similar'.$J$1:$J$10,$'Similar'.$L$1:$L$10,$'Similar'.$N$1:$N$10,$'Similar'.$P$1:$P$10,$'Similar'.$R$1:$R$10,$'Similar'.$T$1:$T$10,$'Similar'.$V$1:$V$10,$'Similar'.$X$1:$X$10,$'Similar'.$Z$1:$Z$10,$'Similar'.$AB$1:$AB$10,$'Similar'.$AD$1:$AD$10,$'Similar'.$AF$1:$AF$10,$'Similar'.$AH$1:$AH$10,$'Similar'.$AJ$1:$AJ$10,$'Similar'.$AL$1:$AL$10,$'Similar'.$AN$1:$AN$10,$'Similar'.$AP$1:$AP$10,$'Similar'.$AR$1:$AR$10,$'Similar'.$AT$1:$AT$10,$'Similar'.$AV$1:$AV$10,$'Similar'.$AX$1:$AX$10,$'Similar'.$AZ$1:$AZ$10,$'Similar'.$BB$1:$BB$10,$'Similar'.$BD$1:$BD$10,$'Similar'.$BF$1:$BF$10,$'Similar'.$BH$1:$BH$10,$'Similar'.$BJ$1:$BJ$10,$'Similar'.$BL$1:$BL$10,$'Similar'.$BN$1:$BN$10,$'Similar'.$BP$1:$BP$10
+
+Plage totaux + overall:
+$'Similar'.$A$1:$A$11,$'Similar'.$H$1:$H$11,$'Similar'.$J$1:$J$11,$'Similar'.$L$1:$L$11,$'Similar'.$N$1:$N$11,$'Similar'.$P$1:$P$11,$'Similar'.$R$1:$R$11,$'Similar'.$T$1:$T$11,$'Similar'.$V$1:$V$11,$'Similar'.$X$1:$X$11,$'Similar'.$Z$1:$Z$11,$'Similar'.$AB$1:$AB$11,$'Similar'.$AD$1:$AD$11,$'Similar'.$AF$1:$AF$11,$'Similar'.$AH$1:$AH$11,$'Similar'.$AJ$1:$AJ$11,$'Similar'.$AL$1:$AL$11,$'Similar'.$AN$1:$AN$11,$'Similar'.$AP$1:$AP$11,$'Similar'.$AR$1:$AR$11,$'Similar'.$AT$1:$AT$11,$'Similar'.$AV$1:$AV$11,$'Similar'.$AX$1:$AX$11,$'Similar'.$AZ$1:$AZ$11,$'Similar'.$BB$1:$BB$11,$'Similar'.$BD$1:$BD$11,$'Similar'.$BF$1:$BF$11,$'Similar'.$BH$1:$BH$11,$'Similar'.$BJ$1:$BJ$11,$'Similar'.$BL$1:$BL$11,$'Similar'.$BN$1:$BN$11,$'Similar'.$BP$1:$BP$11
+
+Plage totaux sans shuff et no sort + overall:
+$'Similar'.$A$1:$A$11,$'Similar'.$L$1:$L$11,$'Similar'.$N$1:$N$11,$'Similar'.$P$1:$P$11,$'Similar'.$T$1:$T$11,$'Similar'.$V$1:$V$11,$'Similar'.$X$1:$X$11,$'Similar'.$AB$1:$AB$11,$'Similar'.$AD$1:$AD$11,$'Similar'.$AF$1:$AF$11,$'Similar'.$AN$1:$AN$11,$'Similar'.$AP$1:$AP$11,$'Similar'.$AR$1:$AR$11,$'Similar'.$AT$1:$AT$11,$'Similar'.$AV$1:$AV$11,$'Similar'.$AX$1:$AX$11,$'Similar'.$BF$1:$BF$11,$'Similar'.$BH$1:$BH$11,$'Similar'.$BJ$1:$BJ$11,$'Similar'.$BL$1:$BL$11,$'Similar'.$BN$1:$BN$11,$'Similar'.$BP$1:$BP$11
+
+Plage totaux sans shuff, no sort et bb + overall:
+$'Similar'.$A$1:$A$11,$'Similar'.$L$1:$L$11,$'Similar'.$N$1:$N$11,$'Similar'.$P$1:$P$11,$'Similar'.$T$1:$T$11,$'Similar'.$V$1:$V$11,$'Similar'.$X$1:$X$11,$'Similar'.$AB$1:$AB$11,$'Similar'.$AD$1:$AD$11,$'Similar'.$AF$1:$AF$11,$'Similar'.$BF$1:$BF$11,$'Similar'.$BH$1:$BH$11,$'Similar'.$BJ$1:$BJ$11,$'Similar'.$BL$1:$BL$11,$'Similar'.$BN$1:$BN$11,$'Similar'.$BP$1:$BP$11
+
+Plage pourcents + overall:
+$'Similar'.$A$1:$A$11,$'Similar'.$G$1:$G$11,$'Similar'.$I$1:$I$11,$'Similar'.$K$1:$K$11,$'Similar'.$M$1:$M$11,$'Similar'.$O$1:$O$11,$'Similar'.$Q$1:$Q$11,$'Similar'.$S$1:$S$11,$'Similar'.$U$1:$U$11,$'Similar'.$W$1:$W$11,$'Similar'.$Y$1:$Y$11,$'Similar'.$AA$1:$AA$11,$'Similar'.$AC$1:$AC$11,$'Similar'.$AE$1:$AE$11,$'Similar'.$AG$1:$AG$11,$'Similar'.$AI$1:$AI$11,$'Similar'.$AK$1:$AK$11,$'Similar'.$AM$1:$AM$11,$'Similar'.$AO$1:$AO$11,$'Similar'.$AQ$1:$AQ$11,$'Similar'.$AS$1:$AS$11,$'Similar'.$AU$1:$AU$11,$'Similar'.$AW$1:$AW$11,$'Similar'.$AY$1:$AY$11,$'Similar'.$BA$1:$BA$11,$'Similar'.$BC$1:$BC$11,$'Similar'.$BE$1:$BE$11,$'Similar'.$BG$1:$BG$11,$'Similar'.$BI$1:$BI$11,$'Similar'.$BK$1:$BK$11,$'Similar'.$BM$1:$BM$11,$'Similar'.$BO$1:$BO$11
+
+Plage pourcents sans shuff, no sort et bb + overall:
+$'Similar'.$A$1:$A$11,$'Similar'.$K$1:$K$11,$'Similar'.$M$1:$M$11,$'Similar'.$O$1:$O$11,$'Similar'.$S$1:$S$11,$'Similar'.$U$1:$U$11,$'Similar'.$W$1:$W$11,$'Similar'.$AA$1:$AA$11,$'Similar'.$AC$1:$AC$11,$'Similar'.$AE$1:$AE$11,$'Similar'.$BE$1:$BE$11,$'Similar'.$BG$1:$BG$11,$'Similar'.$BI$1:$BI$11,$'Similar'.$BK$1:$BK$11,$'Similar'.$BM$1:$BM$11,$'Similar'.$BO$1:$BO$11
+
+Moyenne / totaux:
+$'mf 0.8 - rem 1.0'.$L$1,$'mf 0.8 - rem 1.0'.$N$1,$'mf 0.8 - rem 1.0'.$P$1,$'mf 0.8 - rem 1.0'.$T$1,$'mf 0.8 - rem 1.0'.$V$1,$'mf 0.8 - rem 1.0'.$X$1,$'mf 0.8 - rem 1.0'.$AB$1,$'mf 0.8 - rem 1.0'.$AD$1,$'mf 0.8 - rem 1.0'.$AF$1,$'mf 0.8 - rem 1.0'.$BF$1,$'mf 0.8 - rem 1.0'.$BH$1,$'mf 0.8 - rem 1.0'.$BJ$1,$'mf 0.8 - rem 1.0'.$BL$1,$'mf 0.8 - rem 1.0'.$BN$1,$'mf 0.8 - rem 1.0'.$BP$1
+$'mf 0.8 - rem 1.0'.$L$11,$'mf 0.8 - rem 1.0'.$N$11,$'mf 0.8 - rem 1.0'.$P$11,$'mf 0.8 - rem 1.0'.$T$11,$'mf 0.8 - rem 1.0'.$V$11,$'mf 0.8 - rem 1.0'.$X$11,$'mf 0.8 - rem 1.0'.$AB$11,$'mf 0.8 - rem 1.0'.$AD$11,$'mf 0.8 - rem 1.0'.$AF$11,$'mf 0.8 - rem 1.0'.$BF$11,$'mf 0.8 - rem 1.0'.$BH$11,$'mf 0.8 - rem 1.0'.$BJ$11,$'mf 0.8 - rem 1.0'.$BL$11,$'mf 0.8 - rem 1.0'.$BN$11,$'mf 0.8 - rem 1.0'.$BP$11
+
+Synthèse Moyenne tous les totaux:
+$Synthèse.$A$1:$A$6,$Synthèse.$E$1:$E$6,$Synthèse.$G$1:$G$6,$Synthèse.$I$1:$I$6,$Synthèse.$K$1:$K$6,$Synthèse.$M$1:$M$6,$Synthèse.$O$1:$O$6,$Synthèse.$Q$1:$Q$6,$Synthèse.$S$1:$S$6,$Synthèse.$U$1:$U$6,$Synthèse.$W$1:$W$6,$Synthèse.$Y$1:$Y$6,$Synthèse.$AA$1:$AA$6,$Synthèse.$AC$1:$AC$6,$Synthèse.$AE$1:$AE$6,$Synthèse.$AG$1:$AG$6,$Synthèse.$AI$1:$AI$6,$Synthèse.$AK$1:$AK$6,$Synthèse.$AM$1:$AM$6,$Synthèse.$AO$1:$AO$6,$Synthèse.$AQ$1:$AQ$6,$Synthèse.$AS$1:$AS$6,$Synthèse.$AU$1:$AU$6,$Synthèse.$AW$1:$AW$6,$Synthèse.$AY$1:$AY$6,$Synthèse.$BA$1:$BA$6,$Synthèse.$BC$1:$BC$6,$Synthèse.$BE$1:$BE$6,$Synthèse.$BG$1:$BG$6,$Synthèse.$BI$1:$BI$6,$Synthèse.$BK$1:$BK$6,$Synthèse.$BM$1:$BM$6
+
+
+Synthèse Moyenne tous les remplissage:
+$Synthèse.$A$1:$A$6,$Synthèse.$E$1:$E$6,$Synthèse.$G$1:$G$6,$Synthèse.$I$1:$I$6,$Synthèse.$K$1:$K$6,$Synthèse.$M$1:$M$6,$Synthèse.$O$1:$O$6,$Synthèse.$Q$1:$Q$6,$Synthèse.$S$1:$S$6,$Synthèse.$U$1:$U$6,$Synthèse.$W$1:$W$6,$Synthèse.$Y$1:$Y$6,$Synthèse.$AA$1:$AA$6,$Synthèse.$AC$1:$AC$6,$Synthèse.$AE$1:$AE$6,$Synthèse.$AG$1:$AG$6,$Synthèse.$AI$1:$AI$6,$Synthèse.$AK$1:$AK$6,$Synthèse.$AM$1:$AM$6,$Synthèse.$AO$1:$AO$6,$Synthèse.$AQ$1:$AQ$6,$Synthèse.$AS$1:$AS$6,$Synthèse.$AU$1:$AU$6,$Synthèse.$AW$1:$AW$6,$Synthèse.$AY$1:$AY$6,$Synthèse.$BA$1:$BA$6,$Synthèse.$BC$1:$BC$6,$Synthèse.$BE$1:$BE$6,$Synthèse.$BG$1:$BG$6,$Synthèse.$BI$1:$BI$6,$Synthèse.$BK$1:$BK$6,$Synthèse.$BM$1:$BM$6
+
+Synthèse Moyenne tous les totaux:
+$Synthèse.$A$2:$A$6,$Synthèse.$D$1:$D$6,$Synthèse.$F$1:$F$6,$Synthèse.$H$1:$H$6,$Synthèse.$J$1:$J$6,$Synthèse.$L$1:$L$6,$Synthèse.$N$1:$N$6,$Synthèse.$P$1:$P$6,$Synthèse.$R$1:$R$6,$Synthèse.$T$1:$T$6,$Synthèse.$V$1:$V$6,$Synthèse.$X$1:$X$6,$Synthèse.$Z$1:$Z$6,$Synthèse.$AB$1:$AB$6,$Synthèse.$AD$1:$AD$6,$Synthèse.$AF$1:$AF$6,$Synthèse.$AH$1:$AH$6,$Synthèse.$AJ$1:$AJ$6,$Synthèse.$AL$1:$AL$6,$Synthèse.$AN$1:$AN$6,$Synthèse.$AP$1:$AP$6,$Synthèse.$AR$1:$AR$6,$Synthèse.$AT$1:$AT$6,$Synthèse.$AV$1:$AV$6,$Synthèse.$AX$1:$AX$6,$Synthèse.$AZ$1:$AZ$6,$Synthèse.$BB$1:$BB$6,$Synthèse.$BD$1:$BD$6,$Synthèse.$BF$1:$BF$6,$Synthèse.$BH$1:$BH$6,$Synthèse.$BJ$1:$BJ$6,$Synthèse.$BL$1:$BL$6
+
+ Avg %usage 	 Avg max % usage	nothing_pn	nothing	shuff1_pn	shuff1	1/C_pn	1/C	1/R_pn	1/R	R/C_pn	R/C	ic_shuff_pn	ic_shuff	ic_dyn_1/C_pn	ic_dyn_1/C	ic_dyn_1/R_pn	ic_dyn_1/R	ic_dyn_R/C_pn	ic_dyn_R/C	bc_shuff_pn	bc_shuff	bc_dyn_1/C_pn	bc_dyn_1/C	bc_dyn_1/R_pn	bc_dyn_1/R	bc_dyn_R/C_pn	bc_dyn_R/C	bb_nothing_pn	bb_nothing	bb_shuff1_pn	bb_shuff1	bb_shuff_pn	bb_shuff	bb_st_1/C_pn	bb_st_1/C	bb_dyn_1/C_pn	bb_dyn_1/C	bb_st_1/R_pn	bb_st_1/R	bb_dyn_1/R_pn	bb_dyn_1/R	bb_st_R/C_pn	bb_st_R/C	bb_dyn_R/C_pn	bb_dyn_R/C	sbb_nothing_pn	sbb_nothing	sbb_shuff1_pn	sbb_shuff1	sbb_shuff_pn	sbb_shuff	sbb_st_1/C_pn	sbb_st_1/C	sbb_dyn_1/C_pn	sbb_dyn_1/C	sbb_st_1/R_pn	sbb_st_1/R	sbb_dyn_1/R_pn	sbb_dyn_1/R	sbb_st_R/C_pn	sbb_st_R/C	sbb_dyn_R/C_pn	sbb_dyn_R/C
+

@@ -1,0 +1,43 @@
+=================================================
+`--> time pypy short_output.py
+pypy short_output.py  249,34s user 0,03s system 99% cpu 4:10,02 total
+
+(results_unif.csv -- rem = 1)
+
+=================================================
+`--> time pypy short_output.py
+pypy short_output.py  253,56s user 0,10s system 99% cpu 4:13,95 total
+
+(results_unif_rem=.8.csv -- rem = .8)
+
+=================================================
+`--> time pypy short_output.py
+pypy short_output.py  123,69s user 0,03s system 99% cpu 2:03,86 total
+
+(results_unif_rare_rem=.8) rate = .25
+
+=================================================
+`--> time pypy short_output.py
+pypy short_output.py  120,48s user 0,03s system 99% cpu 2:00,64 total
+
+(results_unif_rare_rem=1.) rate = .25
+
+=================================================
+`--> time pypy short_output.py
+pypy short_output.py  410,37s user 0,03s system 99% cpu 6:50,93 total
+
+(correlated bins -- rem = .8 -- sd = .1)
+
+=================================================
+`--> time pypy short_output.py
+pypy short_output.py  401,25s user 0,04s system 99% cpu 6:41,81 total
+
+
+(correlated bins & items -- rem = .8 -- sd = .1)
+
+=================================================
+`--> time pypy short_output.py
+pypy short_output.py  532,03s user 0,03s system 99% cpu 8:52,67 total
+
+(similar -- rem = .8 -- sd = .2)
+

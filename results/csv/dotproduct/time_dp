@@ -1,0 +1,19 @@
+
+Unif:
+pypy short_output_dp.py  1028,75s user 0,03s system 99% cpu 17:09,65 total
+
+Unif rare(0.25):
+pypy short_output_dp.py  1994,66s user 0,14s system 99% cpu 33:18,01 total
+
+Similar (0.7):
+pypy short_output_dp.py  2363,32s user 0,12s system 99% cpu 39:27,15 total
+
+Similar (0.8):
+pypy short_output_dp.py  2592,14s user 0,33s system 99% cpu 43:16,58 total
+
+Correlated (False):
+pypy short_output_dp.py  1277,97s user 0,08s system 99% cpu 21:19,63 total
+
+Correlated (True):
+pypy short_output_dp.py  1335,20s user 0,05s system 99% cpu 22:16,81 total
+

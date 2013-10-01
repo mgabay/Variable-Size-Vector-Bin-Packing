@@ -1,0 +1,52 @@
+36 heuristics, 100 instances
+time = total
+
+Unif / Unif_Rare :
+    Bin sizes, drawn from  [10;1000]
+    rem = 1
+	rare_proc = 0.25
+    
+    time (non rare) :
+            30-2 : 10.06s
+            30-5 : 20.46s
+            30-10 : 22.11s
+            10-2 : 152.30s
+            10-5 : 169.99s
+            10-10 : 197.31s    
+    time (rare) :
+            30-5 : 11,07s
+            30-10 : 11,71s
+            10-2 : 71,62s
+            10-5 : 80,37s
+            10-10 : 94,68s
+    
+Correlated :
+    stdev = 0.10*base_size
+    rem = 0.8
+    time (only bins):
+            30-2 : 25,05s
+            30-5 : 27.27s
+            30-10 : 31.54s
+            100-2 : 219.28s
+            100-5 : 247.14s
+            100-10 : 297,51s
+            
+    time (bins+items):
+            30-2 : 25,05s
+            30-5 : 27.27s
+            30-10 : 31.54s
+            100-2 : 437.19s
+            100-5 : 545.03s
+            100-10 : 692.65s
+            
+Similar :
+    stdev = 0.20*base_size
+    time (bins+items):
+            30-2 : 39,93s
+            30-5 : 37,32s
+            30-10 : 39,30s
+            100-2 : 
+            100-5 : 
+            100-10 : 365,67s
+            
+
