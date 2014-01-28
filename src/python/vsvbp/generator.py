@@ -1,6 +1,7 @@
-from container import *
 import random
 import itertools
+
+from .container import *
 
 """ Generate VSVBP instances
 There are several various generators.

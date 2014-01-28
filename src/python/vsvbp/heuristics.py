@@ -1,8 +1,8 @@
 import unittest
-from measures import *
-from container import *
 from collections import deque
 
+from .measures import *
+from .container import *
 
 ################## Heuristics ####################
 

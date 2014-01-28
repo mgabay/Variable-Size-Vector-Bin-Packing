@@ -3,10 +3,10 @@ Main program
     Generates and run banchmark
 """
 
-from container import *
-from heuristics import *
-from generator import *
-from measures import *
+from .container import *
+from .heuristics import *
+from .generator import *
+from .measures import *
 
 NUM_HEUR = 31
 

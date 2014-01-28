@@ -14,7 +14,8 @@ Note that most measures perform some unnecessary redundant computations
 import random
 import itertools
 import math
-from container import *
+
+from .container import *
 
 ################## Measures ####################
 
