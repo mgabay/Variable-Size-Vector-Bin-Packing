@@ -1,15 +1,16 @@
 #!/usr/bin/env python
 """ Basic Setup Script """
 
-from setuptools import setup
+from setuptools import setup, find_packages
 
 setup(
-    name='gabay-vsvbp',
+    name='vsvbp',
     version='0.0.1',
     description='Variable Sized Vector Packing Heuristics',
     author='Michael Gabay',
     author_email='',
-    packages=['vsvbp'],
+    packages=find_packages(),
+    include_package_data=True,
     scripts=['vsvbp-benchmark'],
     url='',
     license='',
