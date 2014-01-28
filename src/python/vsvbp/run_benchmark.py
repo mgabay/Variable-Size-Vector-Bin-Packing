@@ -3,10 +3,10 @@ Main program
     Generates and run banchmark
 """
 
-from container import *
-from heuristics import *
-from generator import *
-from measures import *
+from .container import *
+from .heuristics import *
+from .generator import *
+from .measures import *
 
 def repr_instance(inst):
     """ Print instance characteristics
@@ -81,7 +81,7 @@ def close_files():
     bb_file.close()
   
   
-def run():
+def run_benchmark():
     seed = 0
     num_instances = 100
     num_bins = 100
@@ -232,9 +232,5 @@ def run_tests(instance):
     repr = repr_ic(instance,ret,repr)
     sbb_file.write(repr+'\n')
     
-def main():
-    run()
-    
-    
 if __name__ == "__main__":
-    main()
+    run_benchmark()
