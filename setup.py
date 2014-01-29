@@ -11,10 +11,10 @@ setup(
     author_email='',
     packages=find_packages(),
     include_package_data=True,
-    scripts=['vsvbp-benchmark'],
+    scripts=['bin/vsvbp-benchmark'],
     url='',
     license='',
-    long_description=open('../../README.md').read(),
+    long_description=open('README.md').read(),
     keywords='',
     use_2to3 = True,
     classifiers=[
