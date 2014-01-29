@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 """ Basic Setup Script """
 
-from setuptools import setup, find_packages
+from setuptools import setup
 
 setup(
     name='vsvbp',
@@ -9,7 +9,7 @@ setup(
     description='Variable Sized Vector Packing Heuristics',
     author='Michael Gabay',
     author_email='',
-    packages=find_packages(),
+    packages=['vsvbp'],
     include_package_data=True,
     scripts=['bin/vsvbp-benchmark'],
     url='',
