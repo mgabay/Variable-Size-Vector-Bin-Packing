@@ -13,7 +13,7 @@ setup(
     include_package_data=True,
     scripts=['bin/vsvbp-benchmark'],
     url='',
-    license='',
+    license='GPL',
     long_description=open('README.md').read(),
     keywords='',
     use_2to3 = True,
@@ -21,5 +21,6 @@ setup(
       'Development Status :: 1 - Planning',
       'Intended Audience :: Science/Research',
       'Topic :: Scientific/Engineering'
+      'License :: OSI Approved :: GNU General Public License (GPL)'
     ],
 )
