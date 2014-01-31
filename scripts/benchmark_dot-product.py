@@ -1,12 +1,12 @@
 """
-Main program
-    Generates and run banchmark
+    Generates and run benchmark for dot product heuristics
+    Benchmark parameters are specified in run, lines 90 to 101
 """
 
-from .container import *
-from .heuristics import *
-from .generator import *
-from .measures import *
+from vsvbp.container import *
+from vsvbp.heuristics import *
+from vsvbp.generator import *
+from vsvbp.measures import *
 
 NUM_HEUR = 3
 
@@ -76,7 +76,7 @@ def repr_instance(instances):
 
 def open_files(suffix=''):
     global instance_file, ic_file, bc_file, bb_file, sbb_file
-    instance_file = open('../results'+suffix+'.csv', 'w')
+    instance_file = open('results'+suffix+'.csv', 'w')
     s = '#bins ; #resources; Avg #items ; Avg %usage ; Avg max % usage;'
     for heu in hlist:
         s += heu+'_pn;'+heu+'_ns;'
@@ -126,9 +126,13 @@ def run_pr(num_bins,num_resources,min_fill,rem,rate=1.,sd=.1, cori = False):
     instances = []
 
     for i in xrange(num_instances):
-        inst = generator(num_bins, num_resources, min_fill, unif_bin, seed, rem_cons=rem, proc_rate=rate)
-        #inst = generator(num_bins, num_resources, min_fill, correlated_capacities, seed, rem_cons=rem, dev=sd, correlated_items = cori)
-        #inst = generator(num_bins, num_resources, min_fill, similar, seed, dev=sd)
+        inst = generator(num_bins, num_resources, min_fill, unif_bin,
+                seed, rem_cons=rem, proc_rate=rate)
+        #inst = generator(num_bins, num_resources, min_fill,
+        #        correlated_capacities, seed, rem_cons=rem, dev=sd,
+        #        correlated_items = cori)
+        #inst = generator(num_bins, num_resources, min_fill,
+        #        similar, seed, dev=sd)
         instances.append(inst)
         seed += 1
         run_tests(inst)
@@ -138,15 +142,18 @@ def run_pr(num_bins,num_resources,min_fill,rem,rate=1.,sd=.1, cori = False):
 
 def run_tests(instance):
     instance.empty()
-    ret = bfd_item_centric(instance.items[:], instance.bins[:], dp_nonorm, do_nothing)
+    ret = bfd_item_centric(
+            instance.items[:], instance.bins[:], dp_nonorm, do_nothing)
     upd(instance,ret)
 
     instance.empty()
-    ret = bfd_item_centric(instance.items[:], instance.bins[:], dp_normC, do_nothing)
+    ret = bfd_item_centric(
+            instance.items[:], instance.bins[:], dp_normC, do_nothing)
     upd(instance,ret)
 
     instance.empty()
-    ret = bfd_item_centric(instance.items[:], instance.bins[:], dp_normR, do_nothing)
+    ret = bfd_item_centric(
+            instance.items[:], instance.bins[:], dp_normR, do_nothing)
     upd(instance,ret)
     return
 
