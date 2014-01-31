@@ -11,7 +11,10 @@ setup(
     author_email='',
     packages=['vsvbp'],
     include_package_data=True,
-    scripts=['bin/vsvbp-benchmark'],
+    scripts=[
+        'bin/vsvbp-benchmark',
+        'bin/vsvbp-short-output'
+    ],
     url='',
     license='GPL',
     long_description=open('README.md').read(),
