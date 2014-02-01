@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-from vsvbp import run_benchmark
+from vsvbp.benchmark import run_benchmark
 
 if __name__ == "__main__":
     run_benchmark()

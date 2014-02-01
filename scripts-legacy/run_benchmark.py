@@ -3,10 +3,10 @@ Main program
     Generates and run banchmark
 """
 
-from .container import *
-from .heuristics import *
-from .generator import *
-from .measures import *
+from vsvbp.container import *
+from vsvbp.heuristics import *
+from vsvbp.generator import *
+from vsvbp.measures import *
 
 def repr_instance(inst):
     """ Print instance characteristics
@@ -54,33 +54,33 @@ def open_files(suffix=''):
         "dynamicOneOverC;;;;staticOneOverR;;;;dynamicsOneOverR;;;;staticROverC"+
         ";;;;dynamicROverC\n")
     ic_file.write(";r_min ; #success ; success ?;"*9+"\n")
-    
+
     bc_file = open('../bin_centric'+suffix+'.csv', 'w')
     bc_file.write(";do_nothing;;;shuffleOnce;;;shuffle;;;staticOneOverC;;;"+
         "dynamicOneOverC;;;staticOneOverR;;;dynamicsOneOverR;;;staticROverC"+
         ";;;dynamicROverC\n")
     bc_file.write("; #success ; success ?;"*9+"\n")
-    
+
     bb_file = open('../bin_balancing'+suffix+'.csv', 'w')
     bb_file.write(";do_nothing;;;;shuffleOnce;;;;shuffle;;;;staticOneOverC;;;;"+
         "dynamicOneOverC;;;;staticOneOverR;;;;dynamicsOneOverR;;;;staticROverC"+
         ";;;;dynamicROverC\n")
     bb_file.write(";r_min ; #success ; success ?;"*9+"\n")
-    
+
     sbb_file = open('../single_bin_balancing'+suffix+'.csv', 'w')
     sbb_file.write(";do_nothing;;;;shuffleOnce;;;;shuffle;;;;staticOneOverC;;;;"+
         "dynamicOneOverC;;;;staticOneOverR;;;;dynamicsOneOverR;;;;staticROverC"+
         ";;;;dynamicROverC\n")
     sbb_file.write(";r_min ; #success ; success ?;"*9+"\n")
-    
-    
+
+
 def close_files():
     instance_file.close()
     ic_file.close()
     bc_file.close()
     bb_file.close()
-  
-  
+
+
 def run_benchmark():
     seed = 0
     num_instances = 100
@@ -90,7 +90,7 @@ def run_benchmark():
     rate=.25
     rem=.8
     sd = .2
-    
+
     # open_files('_unif_'+str(num_bins)+'_'+str(num_resources))
     # open_files('_unif_rare_'+str(num_bins)+'_'+str(num_resources)+'_'+str(rate))
     #open_files('_cor_'+str(num_bins)+'_'+str(num_resources)+'_'+str(sd))
@@ -105,7 +105,7 @@ def run_benchmark():
         run_tests(inst)
         instance_file.flush()
     close_files()
-    
+
 
 def run_tests(instance):
     # Item centric heuristics
@@ -138,7 +138,7 @@ def run_tests(instance):
     ret = bfd_item_centric(instance.items[:], instance.bins[:], dynamicItemsROverC,dynamicBinsROverC)
     repr = repr_ic(instance,ret,repr)
     ic_file.write(repr+'\n')
-    
+
     # Bin centric heuristics
     repr = ''
     instance.empty()
@@ -169,7 +169,7 @@ def run_tests(instance):
     ret = bfd_bin_centric(instance.items[:], instance.bins[:], dynamicItemsROverC,dynamicBinsROverC)
     repr = repr_bc(instance,ret,repr)
     bc_file.write(repr+'\n')
-    
+
     # Bin balancing
     repr = ''
     instance.empty()
@@ -200,7 +200,7 @@ def run_tests(instance):
     ret = bin_balancing(instance.items[:], instance.bins[:], dynamicItemsROverC,dynamicBinsROverC)
     repr = repr_ic(instance,ret,repr)
     bb_file.write(repr+'\n')
-    
+
     # Single Bin balancing
     repr = ''
     instance.empty()
@@ -231,6 +231,6 @@ def run_tests(instance):
     ret = bin_balancing(instance.items[:], instance.bins[:], dynamicItemsROverC,dynamicBinsROverC, single=True)
     repr = repr_ic(instance,ret,repr)
     sbb_file.write(repr+'\n')
-    
+
 if __name__ == "__main__":
     run_benchmark()
