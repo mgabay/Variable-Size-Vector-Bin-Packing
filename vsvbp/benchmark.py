@@ -1,7 +1,8 @@
 """
-    Generates and run benchmark for simple heuristics
-    Benchmark parameters are specified in run, lines 95 to 108
-    Keep in mind that there is a huge number of tests and heuristics.
+    Generates and run a benchmark on all heuristics
+
+    This takes some time: there is a huge number of tests and heuristics.
+    Have a look at the benchmark function documentation for more details
 """
 
 from vsvbp.container import *
@@ -9,17 +10,18 @@ from vsvbp.heuristics import *
 from vsvbp.generator import *
 from vsvbp.measures import *
 
-NUM_HEUR = 31
-
-rank_t = 0
-results = [0]*NUM_HEUR
-
 hlist = ["nothing","shuff1","1/C","1/R","R/C",
          "ic_shuff","ic_dyn_1/C","ic_dyn_1/R","ic_dyn_R/C",
          "bc_shuff","bc_dyn_1/C","bc_dyn_1/R","bc_dyn_R/C",
          "bb_nothing","bb_shuff1","bb_shuff","bb_st_1/C","bb_dyn_1/C","bb_st_1/R",
          "bb_dyn_1/R","bb_st_R/C","bb_dyn_R/C","sbb_nothing","sbb_shuff1","sbb_shuff",
          "sbb_st_1/C","sbb_dyn_1/C","sbb_st_1/R","sbb_dyn_1/R","sbb_st_R/C","sbb_dyn_R/C"]
+dplist = ["dp","dp_normC","dp_normR"]
+
+NUM_HEUR = len(hlist)
+
+rank_t = 0
+results = [0]*NUM_HEUR
 
 def upd(inst,ret):
     """ Update results
@@ -92,57 +94,93 @@ def open_files(suffix=''):
 def close_files():
     instance_file.close()
 
-def run():
-    min_fill = .7
-    rem_cons = .8
-    correlated_items = False
-    dev = 0.2
-    rt = .25
-    #global NUM_HEUR, results
-    #NUM_HEUR=1
-    #results = [0]
-    #open_files('_unif-rare_mf-'+str(min_fill)+'_rem_cons-'+
-    #           str(rem_cons)+'_rate'+str(rt))
-    open_files('_correlated_mf-'+str(min_fill)+'_rem_cons-'+
-               str(rem_cons)+'_sd-'+str(dev)+'_coritems-'+str(correlated_items))
-    #open_files('_similar_mf-'+str(min_fill)+'_sd-'+str(dev))
-    inst = run_pr(10, 2, min_fill, rem_cons,rate=rt,sd=dev,cori=correlated_items)
-    print_res(inst)
-    inst = run_pr(10, 5, min_fill, rem_cons,rate=rt,sd=dev,cori=correlated_items)
-    print_res(inst)
-    inst = run_pr(10, 10, min_fill, rem_cons,rate=rt,sd=dev,cori=correlated_items)
-    print_res(inst)
-    inst = run_pr(30, 2, min_fill, rem_cons,rate=rt,sd=dev,cori=correlated_items)
-    print_res(inst)
-    inst = run_pr(30, 5, min_fill, rem_cons,rate=rt,sd=dev,cori=correlated_items)
-    print_res(inst)
-    inst = run_pr(30, 10, min_fill, rem_cons,rate=rt,sd=dev,cori=correlated_items)
-    print_res(inst)
-    inst = run_pr(100, 2, min_fill, rem_cons,rate=rt,sd=dev,cori=correlated_items)
-    print_res(inst)
-    inst = run_pr(100, 5, min_fill, rem_cons,rate=rt,sd=dev,cori=correlated_items)
-    print_res(inst)
-    inst = run_pr(100, 10, min_fill, rem_cons,rate=rt,sd=dev,cori=correlated_items)
-    print_res(inst)
+def benchmark(num_bins=[10,30,100], num_res=[2,5,10],
+        instance_type='correlated', num_instances=100,
+        min_fill=.7, rem_cons=.8, correlated_items=False,
+        dev=.2, rt=1., use_dp=False):
+    """
+    Runs the benchmark for all combinations of given
+    numbers of bins and resources and on the given number of instances.
+    The implementation of dot product heuristics is very unefficient,
+    so, they are disabled by default.
+
+    Keyword arguments:
+        num_bins -- a list of number of bins in generated instances
+        num_res -- a list of number of resources in generated instances
+        instance_type -- describes the instance type:
+            'unif' (uniform instances),
+            'unif_rare' (uniform instances with rare resources),
+            'correlated' (bin capacities are correlated) and
+            'similar' (the items contained in a bin are similar to the bin)
+            See the generators for more details.
+        num_instances -- the number of generated instances
+        min_fill -- the ratio of bin capacities used in generated
+            instances. See generators for more details.
+        rem_cons --  item requirements are generated in the interval
+            [0 ; rem_cons*bin.remaining]. See generators for more details.
+        correlated_items -- when instance_type == 'correlated', if
+            correlated_items is True, then all bin capacities and items
+            requirements are correlated
+        dev -- the standard deviation on correlated instances
+        rt -- on uniform instances with rare resources, rt is
+            the probability that a given bin capacity in the last
+            resource is non-zero.
+        use_dp -- if True, run dot product heuristics as well. Beware: the
+            implementation of dot products heuristics is very unefficient
+            so the computing time will be significantly increased if they
+            are used.
+    """
+
+    assert instance_type in ['unif','unif_rare','correlated','similar']
+
+    if use_dp:
+        hlist.append(dplist)
+
+    global NUM_HEUR, results
+    NUM_HEUR = len(hlist)
+    results = [0]*NUM_HEUR
+
+    if instance_type == 'unif':
+        rt=1.
+        open_files('_unif_mf-'+str(min_fill)+'_rem_cons-'+str(rem_cons))
+    elif instance_type == 'unif_rare':
+        open_files('_unif-rare_mf-'+str(min_fill)+'_rem_cons-'+
+                str(rem_cons)+'_rate'+str(rt))
+    elif instance_type == 'correlated':
+        open_files('_correlated_mf-' + str(min_fill) +
+                '_rem_cons-'+ str(rem_cons)+ '_sd-'+str(dev) +
+                '_coritems-'+str(correlated_items))
+    else:
+        open_files('_similar_mf-'+str(min_fill)+'_sd-'+str(dev))
+
+    for b in num_bins:
+        for r in num_res:
+            inst = run_pr(instance_type, b, r, min_fill, rem_cons,
+                    rate=rt, sd=dev, cori=correlated_items,
+                    use_dp=use_dp, num_instances=num_instances)
+            print_res(inst)
     close_files()
 
 
-def run_pr(num_bins,num_resources,min_fill,rem,rate=1.,sd=.1, cori = False):
+def run_pr(instance_type, num_bins,num_resources,min_fill,rem,rate=1.,
+        sd=.1, cori = False, use_dp=False, num_instances=100):
     seed = 0
-    num_instances = 100
     instances = []
 
     for i in xrange(num_instances):
-        #inst = generator(num_bins, num_resources, min_fill, unif_bin,
-        #        seed, rem_cons=rem, proc_rate=rate)
-        inst = generator(num_bins, num_resources, min_fill,
-                correlated_capacities, seed, rem_cons=rem, dev=sd,
-                correlated_items = cori)
-        #inst = generator(num_bins, num_resources, min_fill,
-        #       similar, seed, dev=sd)
+        if instance_type == 'unif' or instance_type == 'unif_rare':
+            inst = generator(num_bins, num_resources, min_fill, unif_bin,
+                    seed, rem_cons=rem, proc_rate=rate)
+        if instance_type == 'correlated':
+            inst = generator(num_bins, num_resources, min_fill,
+                    correlated_capacities, seed, rem_cons=rem, dev=sd,
+                    correlated_items = cori)
+        else:
+            inst = generator(num_bins, num_resources, min_fill,
+                   similar, seed, dev=sd)
         instances.append(inst)
         seed += 1
-        run_tests(inst)
+        run_tests(inst, use_dp)
 
     return instances
 
@@ -151,7 +189,7 @@ def run_similarity_measure(instance):
     ret = bfd_item_centric(instance.items[:], instance.bins[:], similarity, do_nothing)
     upd(instance,ret)
 
-def run_tests(instance):
+def run_tests(instance, use_dp=False):
     #run_similarity_measure(instance)
     #return
 
@@ -259,9 +297,22 @@ def run_tests(instance):
     ret = bin_balancing(instance.items[:], instance.bins[:], dynamicItemsROverC,dynamicBinsROverC, single=True)
     upd(instance,ret)
 
-def main():
-    run()
+    # Dot Product
+    if not use_dp:
+        return
+
+    instance.empty()
+    ret = bfd_item_centric(instance.items[:], instance.bins[:], dp_nonorm, do_nothing)
+    upd(instance,ret)
+
+    instance.empty()
+    ret = bfd_item_centric(instance.items[:], instance.bins[:], dp_normC, do_nothing)
+    upd(instance,ret)
+
+    instance.empty()
+    ret = bfd_item_centric(instance.items[:], instance.bins[:], dp_normR, do_nothing)
+    upd(instance,ret)
 
 
 if __name__ == "__main__":
-    main()
+    benchmark()
