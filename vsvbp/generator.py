@@ -15,21 +15,7 @@ MAX_RES = 1000
 MIN_RES = 10
 MAX_TRY = 100 # max number of try to generate an item
 
-################## Instance ####################
-class Instance:
-    """ An instance """
-    def __init__(self, items, bins):
-        self.items = items[:]
-        self.bins = bins[:]
 
-    def __repr__(self):
-        return "Items:\n"+str(self.items)+"\nBins:\n"+str(self.bins)
-    
-    def empty(self):
-        for i in self.items: i.size = 0
-        for b in self.bins: b.empty()
-        
-    
 ################## Utility functions ####################
 def volume(item, bin):
     """ Return a float in [0 ; 1] corresponding to the percentage
@@ -40,7 +26,7 @@ def volume(item, bin):
         if x[0] > x[1]: return 2.0; # item cannot be packed
         if x[1]: sm += float(x[0])/x[1]
         else: ll -= 1
-    
+
     return sm/ll
     #return sum(map(lambda x: float(x[0])/x[1] if x[1] else 1.0,
     #        itertools.izip(item.requirements,bin.capacities))) / len(item.requirements)
@@ -53,7 +39,7 @@ def update(items, item_req, bin, cur_vol):
         return cur_vol + volume(it,bin)
     return False
 
-        
+
 ################## Instances generator ####################
 
 def unif_bin(num_resources, min_fill, rem_cons=1.0, proc_rate = 1.0, minr=MIN_RES, maxr=MAX_RES):
@@ -77,7 +63,7 @@ def unif_bin(num_resources, min_fill, rem_cons=1.0, proc_rate = 1.0, minr=MIN_RE
         item_vol = update(items, it_res, b, item_vol)
         if not item_vol: break
         prev_vol = item_vol
-    
+
     return items, b
 
 
@@ -124,7 +110,7 @@ def similar_items(num_resources, min_fill, base_item, dev=.05, minr=MIN_RES, max
     base*dev is the standard deviation
     """
     mf = min(min_fill, 1-1e-15) # helps getting rid of numerical instabilities
-    
+
     base = random.randint(minr,maxr)
     mean = base*dev
     lbd = 1.0/mean
@@ -132,9 +118,9 @@ def similar_items(num_resources, min_fill, base_item, dev=.05, minr=MIN_RES, max
     for i,v in enumerate(bin_cap):
         base = 5*v
         mean = base*dev
-        lbd = 1.0/mean        
+        lbd = 1.0/mean
         bin_cap[i] = max(0,int(round(base+(random.expovariate(lbd)-mean))))
-    
+
     b = Bin(bin_cap)
     item_vol = 0.0
     items = []
@@ -152,19 +138,19 @@ def similar_items(num_resources, min_fill, base_item, dev=.05, minr=MIN_RES, max
         if not item_vol: break
 
     return items, b
-    
+
 
 def similar(num_resources, min_fill, dev=.05, minr=MIN_RES, maxr=MAX_RES):
     """
     Generates a bin using a uniform distribution. Bin capacities are not correlated.
-    This bin contains items with weight ~ cap/5 + exponential perturbation 
+    This bin contains items with weight ~ cap/5 + exponential perturbation
     base*dev is the standard deviation
     """
     mf = min(min_fill, 1-1e-15) # helps getting rid of numerical instabilities
     # generates bin
     bin_cap = [random.randint(minr,maxr) for x in xrange(num_resources)]
     b = Bin(bin_cap)
-        
+
     item_vol = 0.0
     items = []
     vl = 0
@@ -182,7 +168,7 @@ def similar(num_resources, min_fill, dev=.05, minr=MIN_RES, maxr=MAX_RES):
 
     return items, b
 
-    
+
 def generator(num_bins, num_resources, min_fill, bin_generator = unif_bin, seed=-1, **kwargs):
     """
     Generates a non-correlated, uniformly distributed instance,
@@ -205,26 +191,26 @@ def generator(num_bins, num_resources, min_fill, bin_generator = unif_bin, seed=
     return Instance(items, bins)
 
 
-class ItemBinTestCase(unittest.TestCase):    
+class ItemBinTestCase(unittest.TestCase):
     def setUp(self):
         self.i1 = Item([1,2,9]); self.i2 = Item([4,5,3])
         self.i3 = Item([0,1,0]); self.i4 = Item([9,8,7])
-        self.i1.size = 1; self.i2.size = 2; self.i3.size = 3; self.i4.size = 0; 
+        self.i1.size = 1; self.i2.size = 2; self.i3.size = 3; self.i4.size = 0;
         self.items = [self.i4, self.i3, self.i2, self.i1]
         self.b1=Bin([5,8,4]); self.b2=Bin([100,0,100]); self.b3=Bin([1,2,9]);
-        self.b1.size=1; self.b2.size=2; self.b3.size=3; 
+        self.b1.size=1; self.b2.size=2; self.b3.size=3;
         self.bins = [self.b1,self.b2,self.b3]
         self.ins = Instance(self.items, self.bins)
-        
+
     def testInstance(self):
         assert str(self.ins)=="Items:\n"+str(self.items)+"\nBins:\n"+str(self.bins)
-        
+
     def testGenerator(self):
         iss=generator(2,2,.5,seed=0)
         assert iss.items[1].requirements==[356, 197]
         assert iss.bins[1].capacities == [516,411]
-        
-        
+
+
 def main():
     # Show example instances
     print "-" * 80
@@ -241,6 +227,6 @@ def main():
     print "-" * 80
     print "Similar Items"
     print generator(3, 3, .75, similar_items, base_item=Item([50,50,50]),dev=.15,seed=0)
-    
+
 if __name__ == "__main__":
     main()

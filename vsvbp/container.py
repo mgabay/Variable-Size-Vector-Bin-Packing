@@ -1,5 +1,6 @@
 import unittest
 import itertools
+import operator
 
 
 ################## Utility functions ####################
@@ -17,6 +18,39 @@ def sortl(list, dec=True):
     by increasing order otherwise """
     list.sort(key=lambda x: x.size, reverse=dec)
     return list
+
+
+################## Instance ####################
+
+class Instance:
+    """ An instance """
+    def __init__(self, items, bins):
+        self.items = items[:]
+        self.bins = bins[:]
+
+    def __repr__(self):
+        return "Items:\n"+str(self.items)+"\nBins:\n"+str(self.bins)
+
+    def empty(self):
+        for i in self.items: i.size = 0
+        for b in self.bins: b.empty()
+
+    def lb(self, tbin):
+        """ Return a lower bound on the minimum number of bins required
+        assuming that all bins are similar to tbin """
+        if not self.items: return 0
+
+        reqs = [0] * len(tbin.capacities)
+        for i in self.items:
+            reqs = map(operator.add, reqs, i.requirements)
+
+        nbins = 0
+        for w, c in zip(reqs, tbin.capacities):
+            nb = w / c
+            if w % c: nb += 1
+            nbins = max (nbins, nb)
+
+        return nbins
 
 
 ################## Items ####################
@@ -82,7 +116,7 @@ class ItemBinTestCase(unittest.TestCase):
     def dummy_item_size(self,list):
         for i in list:
             i.size = i.requirements[1]
-    
+
     def setUp(self):
         l = [1,5,9]
         self.b0 = Bin(l)
@@ -124,6 +158,15 @@ class ItemBinTestCase(unittest.TestCase):
         assert l == [self.i2,i3,self.i1]
         assert maxl(l) == self.i1
         assert minl(l) == self.i2
+
+    def testLB(self):
+        assert Instance([],[]).lb(None) == 0
+        inst = Instance([self.i1,self.i2],[])
+        assert inst.lb(Bin([1,1,1])) == 6
+        assert inst.lb(Bin([8,8,8])) == 1
+        assert inst.lb(Bin([2,4,6])) == 2
+        assert inst.lb(Bin([2,5,2])) == 3
+
 
 if __name__ == "__main__":
     unittest.main()
