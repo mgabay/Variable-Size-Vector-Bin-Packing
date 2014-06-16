@@ -35,23 +35,6 @@ class Instance:
         for i in self.items: i.size = 0
         for b in self.bins: b.empty()
 
-    def lb(self, tbin):
-        """ Return a lower bound on the minimum number of bins required
-        assuming that all bins are similar to tbin """
-        if not self.items: return 0
-
-        reqs = [0] * len(tbin.capacities)
-        for i in self.items:
-            reqs = map(operator.add, reqs, i.requirements)
-
-        nbins = 0
-        for w, c in zip(reqs, tbin.capacities):
-            nb = w / c
-            if w % c: nb += 1
-            nbins = max (nbins, nb)
-
-        return nbins
-
 
 ################## Items ####################
 
@@ -64,6 +47,23 @@ class Item:
     def __repr__(self):
         return str(self.requirements)
 
+def vp_lower_bound(items, tbin):
+    """ Return a lower bound on the minimum number of bins required
+    assuming that all bins have the same capacities as tbin.
+    This is a lower bound for the vector packing problem """
+    if not items: return 0
+
+    reqs = [0] * len(tbin.capacities)
+    for i in items:
+        reqs = map(operator.add, reqs, i.requirements)
+
+    nbins = 0
+    for w, c in zip(reqs, tbin.capacities):
+        nb = w / c
+        if w % c: nb += 1
+        nbins = max(nbins, nb)
+
+    return nbins
 
 ################## Bins ####################
 
@@ -160,12 +160,12 @@ class ItemBinTestCase(unittest.TestCase):
         assert minl(l) == self.i2
 
     def testLB(self):
-        assert Instance([],[]).lb(None) == 0
-        inst = Instance([self.i1,self.i2],[])
-        assert inst.lb(Bin([1,1,1])) == 6
-        assert inst.lb(Bin([8,8,8])) == 1
-        assert inst.lb(Bin([2,4,6])) == 2
-        assert inst.lb(Bin([2,5,2])) == 3
+        assert vp_lower_bound([], None) == 0
+        items = [self.i1,self.i2]
+        assert vp_lower_bound(items, Bin([1,1,1])) == 6
+        assert vp_lower_bound(items, Bin([8,8,8])) == 1
+        assert vp_lower_bound(items, Bin([2,4,6])) == 2
+        assert vp_lower_bound(items, Bin([2,5,2])) == 3
 
 
 if __name__ == "__main__":
