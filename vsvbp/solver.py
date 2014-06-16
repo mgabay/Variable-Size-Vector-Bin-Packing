@@ -8,6 +8,7 @@ from .container import *
 from .heuristics import *
 from .generator import *
 from .measures import *
+import random
 
 ######## Create a list of heuristics with valid combinations of measures ########
 class HeuristicList:
@@ -54,7 +55,11 @@ __hlist.dotprod = [
 
 def is_feasible(instance, use_dp=False):
     """ Run all heuristics and return True iff a heuristic finds
-    a feasible solution. Return False otherwise. """
+    a feasible solution. Return False otherwise.
+
+    We emphasize that this code is NOT optimized at all. We could
+    make each much faster by sarting with the heuristics which have
+    the best success chances."""
 
     # Run static heuristics
     for m1, m2 in __hlist.static:
@@ -99,7 +104,7 @@ def is_feasible(instance, use_dp=False):
     return False
 
 
-def optimize(items, tbin, use_dp=False):
+def optimize(items, tbin, use_dp=False, seed=None):
     """ Performs a binary search and returns the best solution
         found for the vector bin packing problem.
 
@@ -109,6 +114,8 @@ def optimize(items, tbin, use_dp=False):
 
     Return the best solution found. len(ret.bins) is the best number of bins found.
     """
+    if seed != None:
+        random.seed(seed)
 
     lb = vp_lower_bound(items, tbin)
     ub = len(items)

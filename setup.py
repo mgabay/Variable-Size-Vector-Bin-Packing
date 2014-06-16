@@ -5,7 +5,7 @@ from setuptools import setup
 
 setup(
     name='vsvbp',
-    version='0.0.1',
+    version='0.0.2',
     description='Variable Sized Vector Packing Heuristics',
     author='Michael Gabay',
     author_email='',
