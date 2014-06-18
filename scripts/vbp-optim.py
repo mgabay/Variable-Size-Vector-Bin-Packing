@@ -1,5 +1,5 @@
 from vsvbp import container, solver
-import argparse, sys, os
+import argparse, sys, os, re
 
 def parse(inputfile):
     """ Parse a file using format from
@@ -19,6 +19,7 @@ def parse(inputfile):
     #inp = open(filename, 'r')
 
     dim = int(inp.readline())
+    #if dim > 50: return False, False
     cap = map(int, inp.readline().split())
     assert dim == len(cap)
 
@@ -38,18 +39,28 @@ def parse(inputfile):
     return items, container.Bin(cap)
 
 
+def natural_sort(l):
+    convert = lambda text: int(text) if text.isdigit() else text.lower()
+    alphanum_key = lambda key: [ convert(c) for c in re.split('([0-9]+)', key) ]
+    return sorted(l, key = alphanum_key)
+
+
 def get_subdirectories(directory):
-    return [os.path.join(directory,name) for name in os.listdir(directory)
+    dirs = [os.path.join(directory,name) for name in os.listdir(directory)
             if os.path.isdir(os.path.join(directory, name))]
+    return natural_sort(dirs)
 
 
 def get_files(directory):
-    return [os.path.join(directory,name) for name in os.listdir(directory)
+    files = [os.path.join(directory,name) for name in os.listdir(directory)
             if os.path.isfile(os.path.join(directory, name))]
+    files.sort()
+    return natural_sort(files)
 
 
 def optim_dir(directory, level=0):
-    for f in get_files(directory):
+    files = get_files(directory)
+    for f in files:
         optimize(f, level)
 
 
@@ -65,16 +76,24 @@ def optim_rec(directory, level=0):
 
 
 def optimize(filename, level=0):
-    items, tbin = parse(open(filename))
+    fl = open(filename)
+    items, tbin = parse(fl)
+    if not items:
+        fl.close()
+        return
+
     opt = len(solver.optimize(items, tbin, optimize.dp, optimize.seed).bins)
 
+    template = "{0:50}{1:10}"
     if level == 0:
-        print filename.split('/').pop() +'\t\t'+ str(opt)
+        st = filename.split('/').pop()
+        print template.format(st, str(opt))
     else:
-        template = "{0:40}{1:10}"
         st = "   "*level+"| "+filename.split('/').pop()
         print template.format(st, str(opt))
 
+    fl.close()
+    sys.stdout.flush()
 
 def run():
     parser = argparse.ArgumentParser(description="Run VSVBP heuristics on given instances")
@@ -104,7 +123,10 @@ def run():
 
     if args.f:
         items, tbin = parse(args.f)
-        print args.f.name.split('/').pop() +'\t\t'+ str(len(solver.optimize(items, tbin, args.u, args.s).bins))
+        opt = len(solver.optimize(items, tbin, args.u, args.s).bins)
+        template = "{0:50}{1:10}"
+        st = args.f.name.split('/').pop()
+        print template.format(st, str(opt))
     elif not args.r:
         optim_dir(args.d)
     else:
