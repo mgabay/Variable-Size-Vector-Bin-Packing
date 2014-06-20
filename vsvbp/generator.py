@@ -45,7 +45,7 @@ def update(items, item_req, bin, cur_vol):
 def unif_bin(num_resources, min_fill, rem_cons=1.0, proc_rate = 1.0, minr=MIN_RES, maxr=MAX_RES):
     """
     Makes a bin containing non-correlated items and
-    Either Volume(items) > min_fill or a 0 weighted item was generated
+    Either Volume(items) > min_fill or a 0 weighted item was generated.
     If proc_rate < 1, the last resource is rare :
     it is 0 with probability proc_rate
     Item capacities are generated in [0,rem_cons*b.remaining]
@@ -72,9 +72,9 @@ def correlated_capacities(num_resources, min_fill, dev=.05,
     """
     Generates a bin. Bin capacities are correlated,
     and if correlated_items is True item requirements are correlated
-    Either Volume(items) > min_fill or a 0 weighted item was generated
+    Either Volume(items) > min_fill or a 0 weighted item was generated.
     base*dev is the standard deviation
-    Item capacities are generated in [0,rem_cons*b.remaining]
+    Item capacities are generated in [0,rem_cons*b.remaining].
     """
     mf = min(min_fill, 1-1e-15) # helps getting rid of numerical instabilities
     base = random.randint(minr,maxr)
@@ -106,7 +106,7 @@ def correlated_capacities(num_resources, min_fill, dev=.05,
 def similar_items(num_resources, min_fill, base_item, dev=.05, minr=MIN_RES, maxr=MAX_RES):
     """
     Generates a bin. Bin capacities are not correlated.
-    All items are similar to the given base item
+    All items are similar to the given base item.
     base*dev is the standard deviation
     """
     mf = min(min_fill, 1-1e-15) # helps getting rid of numerical instabilities
@@ -143,7 +143,7 @@ def similar_items(num_resources, min_fill, base_item, dev=.05, minr=MIN_RES, max
 def similar(num_resources, min_fill, dev=.05, minr=MIN_RES, maxr=MAX_RES):
     """
     Generates a bin using a uniform distribution. Bin capacities are not correlated.
-    This bin contains items with weight ~ cap/5 + exponential perturbation
+    This bin contains items with weight ~ cap/5 + exponential perturbation.
     base*dev is the standard deviation
     """
     mf = min(min_fill, 1-1e-15) # helps getting rid of numerical instabilities

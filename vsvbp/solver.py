@@ -114,6 +114,9 @@ def optimize(items, tbin, use_dp=False, seed=None):
 
     Return the best solution found. len(ret.bins) is the best number of bins found.
     """
+    # replace by the following line to return lower bounds
+    # return Instance([], [tbin]*vp_lower_bound(items, tbin))
+
     if seed != None:
         random.seed(seed)
 
