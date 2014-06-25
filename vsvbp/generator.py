@@ -47,7 +47,7 @@ def unif_bin(num_resources, min_fill, rem_cons=1.0, proc_rate = 1.0, minr=MIN_RE
     Makes a bin containing non-correlated items and
     Either Volume(items) > min_fill or a 0 weighted item was generated.
     If proc_rate < 1, the last resource is rare :
-    it is 0 with probability proc_rate
+    it is 0 with probability 1-proc_rate
     Item capacities are generated in [0,rem_cons*b.remaining]
     """
 
